@@ -1,5 +1,5 @@
 # cm-trace-stm32f207
-Cycle accurate trace on STM32F207
+Cycle accurate trace on STM32F207 using [cm-trace](https://github.com/sebastien-riou/cm-trace).
 
 ## Setup
 This projected as been tested with https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/releases/tag/v14.2.1-1.1 on Ubuntu 24.04.
@@ -21,3 +21,27 @@ Expected output:
 2026-05-16 16:28:17.745 INFO:	PC=0x08001f2a: 1 bx
 umul64: 5 instructions, 9 cycles
 ````
+
+## How to use
+
+### Add function to trace
+See [cm-trace](https://github.com/sebastien-riou/cm-trace).
+
+### Build
+````
+make clean all
+````
+
+### Flash the board
+````
+./flash
+````
+
+### Capture
+The following creates a `.cmtrace` file which contains a copy of the elf file and the execution trace:
+````
+pipenv run cmtrace-capture /dev/ttyACM0 build/cmtrace-stm32f207.elf [--setup=<test function name>] <target function name>
+````
+
+### Dump, cycles breakdown by functions... 
+See [cm-trace](https://github.com/sebastien-riou/cm-trace).
