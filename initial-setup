@@ -20,3 +20,7 @@ cd ..
 cd cm-trace-stm32f207
 make clean all
 ./flash
+
+touch Pipfile
+pipenv install ../cm-trace
+pipenv run cmtrace-capture /dev/ttyACM0 build/cmtrace-stm32f207.elf --setup=test_umul64_16_16 umul64
