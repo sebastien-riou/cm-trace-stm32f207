@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -ex
+
+CMTRACE_TAG=v0.0.11
+
+cd ..
+if [[ ! -z $CMTRACE_USE_GIT_SSH ]]; then
+    CMTRACE_URL=git@github.com:sebastien-riou/cm-trace.git
+else
+    CMTRACE_URL=https://github.com/sebastien-riou/cm-trace.git
+fi
+
+git clone --depth=1 $CMTRACE_URL --branch $CMTRACE_TAG --single-branch
+
+cd cm-trace
+./buildit on/cortex-m3 minSizeRel
+cd ..
+
+cd cm-trace-stm32f207
+make clean all
+./flash
