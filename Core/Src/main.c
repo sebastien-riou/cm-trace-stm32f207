@@ -70,13 +70,14 @@ static void MX_TIM5_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+/*
 void led1_on(){
 	HAL_GPIO_WritePin(LD1_GPIO_Port,LD1_Pin,1);
 }
 
 void led1_off(){
 	HAL_GPIO_WritePin(LD1_GPIO_Port,LD1_Pin,0);
-}
+}*/
 void systick_disable(void) {
 	SysTick->CTRL &= ~(SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk);
 }
@@ -105,16 +106,16 @@ void cmtrace_timer_start(uint32_t cycles){
 	SET_BIT(TIM5->DIER, TIM_DIER_UIE);
 	SET_BIT(TIM5->CR1, TIM_CR1_OPM);//set one pulse mode
 	LL_TIM_OC_SetCompareCH1(htim5.Instance,cycles);
-	led1_on();
+	//led1_on();
 	SET_BIT(TIM5->CR1, TIM_CR1_CEN);
 }
 void cmtrace_timer_stop(){
 	CLEAR_BIT(TIM5->CR1, TIM_CR1_CEN);//stop timer
-	led1_off();
+	//led1_off();
 	//printf("cmtrace_timer_stop\n");
 }
 void cmtrace_timer_irq_ack(){
-	led1_off();
+	//led1_off();
 	cmtrace_timer_stop();
 	__HAL_TIM_CLEAR_FLAG(&htim5, TIM_FLAG_UPDATE);
 	CLEAR_BIT(TIM5->DIER, TIM_DIER_UIE);
