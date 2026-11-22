@@ -1,5 +1,30 @@
 # cm-trace-stm32f207
+
+> [!WARNING]
+> **Deprecated.** This repository is no longer maintained. cm-trace now runs on the STM32F207 Nucleo board as a
+> [lean-bsp](https://github.com/sebastien-riou/lean-bsp) application:
+> [cm-trace](https://github.com/sebastien-riou/cm-trace) built with
+> [lean-bsp-nucleo-f207](https://github.com/sebastien-riou/lean-bsp-nucleo-f207), a board support package shared by
+> every lean-bsp application. Follow cm-trace's README, section
+> ["With lean-bsp"](https://github.com/sebastien-riou/cm-trace#with-lean-bsp).
+>
+> That build traces the same as this project, instruction for instruction (opcode and cycles), and also runs on other
+> boards. This repository stays as it was, for reference.
+
 Cycle accurate trace on STM32F207 using [cm-trace](https://github.com/sebastien-riou/cm-trace).
+
+## Instead: the lean-bsp build
+
+With `cm-trace`, `lean-bsp-nucleo-f207` and [lean-hwbridge](https://github.com/sebastien-riou/lean-hwbridge) set up
+as cm-trace's README describes, from the `cm-trace` directory:
+
+````
+lbsp build --bsp nucleo-f207
+lbsp load --bsp nucleo-f207
+pipenv run python -m cmtrace.capture /dev/ttyACM0 build/nucleo-f207/cortex-m3/cm-trace.elf --setup=test_umul64_16_16 umul64
+````
+
+The instructions below are this repository's own, kept as they were.
 
 ## Setup
 This projected as been tested with https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/releases/tag/v14.2.1-1.1 on Ubuntu 24.04.
