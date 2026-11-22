@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Src/main.c \
+Core/Src/umull_m3_ct_test.c \
 Core/Src/stm32f2xx_it.c \
 Core/Src/stm32f2xx_hal_msp.c \
 Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_uart.c \

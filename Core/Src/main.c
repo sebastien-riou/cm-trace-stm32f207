@@ -124,7 +124,7 @@ void cmtrace_timer_irq_ack(){
 uint32_t cmtrace_timer_read(){
 	return LL_TIM_GetCounter(TIM5);
 }
-
+void umull_ct_test(void);
 /* USER CODE END 0 */
 
 /**
@@ -167,6 +167,7 @@ int main(void)
   test_umul64_32_32();*/
   include_test_functions();
   //cmtrace_trace(test_umul64_16_16);
+  umull_ct_test();
   cmtrace_trace_loop();
   /* USER CODE END 2 */
 
